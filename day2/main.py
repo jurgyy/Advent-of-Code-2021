@@ -6,7 +6,7 @@ def parse_line(line: str) -> Tuple[str, int]:
     return direction, int(count)
 
 
-def move(path) -> Tuple[int, int, int]:
+def move(path) -> Tuple[int, int]:
     forwards, depth = 0, 0
 
     with open(path) as f:
@@ -19,10 +19,10 @@ def move(path) -> Tuple[int, int, int]:
             else:
                 depth -= count
 
-    return forwards, depth, forwards * depth
+    return forwards, depth
 
 
-def move_amied(path) -> Tuple[int, int, int]:
+def move_aimed(path) -> Tuple[int, int]:
     forwards, depth = 0, 0
     aim = 0
 
@@ -37,43 +37,39 @@ def move_amied(path) -> Tuple[int, int, int]:
             else:
                 aim -= count
 
-    return forwards, depth, forwards * depth
+    return forwards, depth
 
 
 def test_part_1():
-    f, d, m = move("./data/example.txt")
+    f, d = move("./data/example.txt")
     correct_f = 15
     correct_d = 10
-    correct_m = correct_d * correct_f
     assert correct_f == f, f"{correct_f} != {f}"
     assert correct_d == d, f"{correct_d} != {d}"
-    assert correct_m == m, f"{correct_m} != {m}"
 
 
 def test_part_2():
-    f, d, m = move_amied("./data/example.txt")
+    f, d = move_aimed("./data/example.txt")
     correct_f = 15
     correct_d = 60
-    correct_m = correct_d * correct_f
     assert correct_f == f, f"{correct_f} != {f}"
     assert correct_d == d, f"{correct_d} != {d}"
-    assert correct_m == m, f"{correct_m} != {m}"
 
 
 def part_1():
-    f, d, m = move("./data/input.txt")
+    f, d = move("./data/input.txt")
     print("Solution part 1:")
     print(f"Forwards: {f}")
     print(f"Depth: {d}")
-    print(f"Multiplication: {m}")
+    print(f"Multiplication: {f * d}")
 
 
 def part_2():
-    f, d, m = move_amied("./data/input.txt")
+    f, d = move_aimed("./data/input.txt")
     print("Solution part 2:")
     print(f"Forwards: {f}")
     print(f"Depth: {d}")
-    print(f"Multiplication: {m}")
+    print(f"Multiplication: {f * d}")
 
 
 if __name__ == '__main__':
